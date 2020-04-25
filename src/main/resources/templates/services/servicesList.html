@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Our Services</title>
+</head>
+<body style="background-image: url('https://www.visagestudio.pl/wp-content/uploads/2016/01/home_beauty2_subheader.jpg');background-repeat: no-repeat; background-attachment: fixed;  background-position: bottom;">
+<!--Navbar-->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" th:href="@{/}">
+        <img src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" th:href="@{/services}">Show our services<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link " th:href="@{/visits/choose-month}">Book your visit! </a>
+            <a class="nav-item nav-link" th:href="@{/customers/find-customer}">Find your visit </a>
+            <a class="nav-item nav-link" th:href="@{/admin/employees/restricted-pages}">Restricted Pages </a>
+        </div>
+    </div>
+</nav>
+<br><br><br>
+<!--End of navbar-->
+<div class="container">
+    <div th:each="tempService : ${serviceList}">
+        <hr class="featurette-divider ">
+        <div class="row featurette ">
+            <div class="col-md-7">
+                <h2 class="featurette-heading"
+                    th:text="${tempService.name} + ' | Price: ' + ${tempService.price} + ' zł'"></h2>
+                <p class="lead" th:text="${tempService.description}"></p>
+                <p><a class="btn btn-secondary" th:href="@{/services/detailed-info(servicesId=${tempService.id})}"
+                      role="button">Show more &raquo;</a></p>
+            </div>
+            <div class="col-md-5" >
+                <img th:src="${tempService.imagesList.get(0).linkUrl}"
+                     alt="Our Services" width="500" height="500"
+                     class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto rounded">
+            </div>
+        </div>
+    </div><!--div for each-->
+</div>
+</body>
+</html>

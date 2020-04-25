@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- ####FROM W3SCHOOL-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 100%;
+        }
+    </style>
+    <!-- ####^ FROM W3SCHOOL-->
+    <title>Home Page</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" th:href="@{/}">
+        <img src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link " th:href="@{/services}">Show our services</a>
+            <a class="nav-item nav-link" th:href="@{/visits/choose-month}">Book your visit! </a>
+            <a class="nav-item nav-link" th:href="@{/customers/find-customer}">Find your visit </a>
+            <a class="nav-item nav-link" th:href="@{/admin/employees/restricted-pages}">Restricted Pages </a>
+        </div>
+    </div>
+</nav>
+
+<div id="demo" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://images.hdqwalls.com/download/fedora-29-stock-rk-1920x1080.jpg" alt="Why not book?"
+                 width="1100" height="500">
+            <div class="carousel-caption">
+                <h3>Book your visit</h3>
+                <p>Why not? Yes that's wallpaper from fedora</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://wallpaperplay.com/walls/full/b/a/9/163008.jpg" alt="HQ" width="1100" height="500">
+            <div class="carousel-caption">
+                <h3>We have cozy HQ!</h3>
+                <p>Yeah very cozy</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://uhdwallpapers.org/uploads/converted/19/08/03/huawei-mediapad-m6-stock-wallpaper-2-1920x1080_577857-mm-90.jpg"
+                 alt="Things" width="1100" height="500">
+            <div class="carousel-caption">
+                <h3>We do nice things!</h3>
+                <p>Lashes only.</p>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+</div>
+<br>
+<br>
+<div class="container">
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        <div class="col-lg-4">
+            <img src="https://naturallashes.pl/userdata/public/gfx/1024/TWILIGHT.jpg"
+                 alt="Our Services" width="140" height="140" class="bd-placeholder-img rounded-circle">
+            <h2>Our Services</h2>
+            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies
+                vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo
+                cursus magna.</p>
+            <p><a class="btn btn-secondary" th:href="@{/services}" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR28Ri4TbT2zR1wThwE7TCy7-q66WzT-0Oon7sBx0AhRBJcxmNS&usqp=CAU"
+                 alt="Book your visit" width="140" height="140" class="bd-placeholder-img rounded-circle">
+
+            <h2>Book your visit!</h2>
+            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras
+                mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                condimentum nibh.</p>
+            <p><a class="btn btn-secondary" th:href="@{/visits/choose-month}" role="button">Book Visit &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img src="https://cdn3.iconfinder.com/data/icons/wpzoom-developer-icon-set/500/67-512.png"
+                 alt="Book your visit" width="140" height="140" class="bd-placeholder-img rounded-circle">
+            <h2>Find your visit</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
+                porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+                fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-secondary" th:href="@{/customers/find-customer}" role="button">Find &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+</div>
+</body>
+</html>

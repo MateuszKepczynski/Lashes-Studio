@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Service Form</title>
+    <style>
+        .setOnCenter {
+            height: 200px;
+            width: 1000px;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -200px;
+        }
+    </style>
+</head>
+<body>
+<!--Navbar-->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" th:href="@{/}">
+        <img src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link " th:href="@{/services}">Show our services</a>
+            <a class="nav-item nav-link " th:href="@{/visits/choose-month}">Book your visit! </a>
+            <a class="nav-item nav-link" th:href="@{/customers/find-customer}">Find your visit </a>
+            <a class="nav-item nav-link active" th:href="@{/admin/employees/restricted-pages}">Restricted Pages <span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+</nav>
+<br><br><br>
+<!--End of navbar-->
+<div class="setOnCenter">
+    <form action="#" th:action="@{/admin/services/save}" th:object="${services}" method="post">
+        <div th:if="${fieldsError}" class="alert alert-danger col-xs-offset-1 mb-4 col-4">
+            <span th:text="${fieldsError}"></span>
+        </div>
+        <input type="hidden" th:field="*{id}"/>
+        <input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4"/>
+        <input type="text" th:field="*{description}" placeholder="Description" class="form-control mb-4 col-4"/>
+        <input type="text" th:field="*{price}" class="form-control mb-4 col-4" placeholder="Price"/>
+        <div th:each="tempSer : *{imagesList}">
+            <input type="text" th:value="${tempSer.linkUrl}" placeholder="Image link" class="form-control mb-4 col-4">
+        </div>
+        <input type="text" th:field="${imageUrl.linkUrl}" placeholder="Image link" class="form-control mb-4 col-4">
+        <button type="submit" class="btn btn-secondary btn-sm">Submit</button>
+    </form>
+</div>
+</body>
+</html>
