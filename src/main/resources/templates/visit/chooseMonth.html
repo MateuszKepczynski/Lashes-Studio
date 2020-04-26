@@ -21,7 +21,7 @@
 <!--Navbar-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" th:href="@{/}">
-        <img src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+        <img class="rounded" src="https://as2.ftcdn.net/jpg/01/62/97/37/500_F_162973775_ON8JPQ2vcmu5hiHv1lZWSwDnaPEuma01.jpg" width="30" height="30" alt="">
     </a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
@@ -40,9 +40,9 @@
     <div th:if="${dateError}" class="alert alert-danger col-xs-offset-1 mb-4 col-4">
         <span th:text="${dateError}"></span>
     </div>
-    <input type="date" name="visitDate" th:field="*{date}"  />
+    <input type="date" name="visitDate" th:field="*{date}"  class="form-control mb-4 col-4"/>
 
-    <select th:field="*{employee.lastName}">
+    <select th:field="*{employee.lastName}" class="form-control mb-4 col-4">
         <option
                 th:each="employee : ${employeeList}"
                 th:value="${employee.lastName}"
@@ -52,37 +52,5 @@
     <button class="btn btn-secondary btn-sm" type="submit">Submit</button>
 </form>
 </div>
-<!--
-
-<div class="setOnCenter">
-    <form action="#" th:action="@{/visits/show-available}" th:object="${visit}" method="post">
-        <div th:if="${dateError}" class="alert alert-danger col-xs-offset-1 mb-4 col-4">
-            <span th:text="${dateError}"></span>
-        </div>
-        <table>
-            <tr>
-                <td>Choose date:</td>
-                <td><input type="date" name="visitDate" th:field="*{date}"  /></td>
-            </tr>
-            <tr>
-                <td><br></td>
-            </tr>
-            <tr>
-                <td>Select Employee:</td>
-                <td><select th:field="*{employee.lastName}">
-                    <option
-                            th:each="employee : ${employeeList}"
-                            th:value="${employee.lastName}"
-                            th:text="${employee.firstName} + ' ' + ${employee.lastName}"
-                    />
-                </select></td>
-            </tr>
-            <tr>
-                <td><button class="btn btn-secondary btn-sm" type="submit">Submit</button></td>
-            </tr>
-        </table>
-    </form>
-</div>
--->
 </body>
 </html>

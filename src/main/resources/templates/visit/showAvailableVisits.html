@@ -7,9 +7,10 @@
     <title>Choose Visit</title>
 </head>
 <body>
+<!--Navbar-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" th:href="@{/}">
-        <img src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+        <img class="rounded" src="https://as2.ftcdn.net/jpg/01/62/97/37/500_F_162973775_ON8JPQ2vcmu5hiHv1lZWSwDnaPEuma01.jpg" width="30" height="30" alt="">
     </a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
@@ -21,6 +22,7 @@
     </div>
 </nav>
 <br><br><br>
+<!--End of navbar-->
 
 <div class="container">
     <h1>Visit Date:</h1>
@@ -29,14 +31,14 @@
 <form action="#" th:action="@{/visits/add}" th:object="${visit}" method="post">
     <input type="hidden" th:field="*{date}">
     <input type="hidden" th:field="*{employee}">
-    Select time of visit: <select th:field="*{timeOfVisit}">
+    Select time of visit: <select th:field="*{timeOfVisit}" class="form-control mb-4 col-4">
     <option
             th:each="tempTime : ${availTimes}"
             th:value="${tempTime}"
             th:text="${tempTime}"
     />
 </select>
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-secondary btn-sm">Submit</button>
 </form>
 
 </select>
