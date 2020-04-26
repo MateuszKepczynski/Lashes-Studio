@@ -99,7 +99,7 @@ public class ServicesController
         }
 
         Services result = serviceRepository.findByName(services.getName());
-        if( result!= null )
+        if( result!= null ) //thats for additional image add
         {
             if(! imageUrl.getLinkUrl().isEmpty())
             {
