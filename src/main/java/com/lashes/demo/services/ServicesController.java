@@ -68,17 +68,28 @@ public class ServicesController
     @PostMapping("admin/services/save")
     public String save(@ModelAttribute("services") Services services, @ModelAttribute("imageUrl") Images imageUrl, Model model)
     {
-        if(! services.validateFields(services) || imageUrl.getLinkUrl().isEmpty())
+        if(! services.validateFields(services)) //Validating fields
         {
             model.addAttribute("fieldsError","Invalid information in fields!");
             model.addAttribute("imageUrl",imageUrl);
             model.addAttribute("services",services);
             return "admin/services/createOrUpdateServicesForm";
         }
-        if(services.getId() != null)
+
+        if(services.getId() != null && services.getId() > 0) // if there's service in DB
         {
-            services = serviceRepository.findById(services.getId()).get();
-            if(services.imagesList.isEmpty() && imageUrl.getLinkUrl().isEmpty())
+            if(services.imagesList == null || services.imagesList.get(0).getLinkUrl().isEmpty()) // when base img is empty
+            {
+                services.imagesList = serviceRepository.findByName(services.getName()).imagesList;
+                model.addAttribute("fieldsError","Invalid information in fields!");
+                model.addAttribute("imageUrl",imageUrl);
+                model.addAttribute("services",services);
+                return "admin/services/createOrUpdateServicesForm";
+            }
+        }
+        else // if there's no service in DB
+        {
+            if(imageUrl.getLinkUrl().isEmpty()) // if base image is empty
             {
                 model.addAttribute("fieldsError","Invalid information in fields!");
                 model.addAttribute("imageUrl",imageUrl);
@@ -88,20 +99,30 @@ public class ServicesController
         }
 
         Services result = serviceRepository.findByName(services.getName());
-        if( result!= null)
+        if( result!= null )
         {
-            result.addImage(imageUrl);
+            if(! imageUrl.getLinkUrl().isEmpty())
+            {
+                result.addImage(imageUrl);
+                imagesRepository.save(imageUrl);
+            }
+
+            for(Images tempImage : services.imagesList)
+            {
+                tempImage.setServices(services);
+            }
+            services.imagesList.get(0).setId(imagesRepository.findByServicesId(services.getId()).get(0).getId());
+            serviceRepository.save(services);
+            return "redirect:/admin/services";
         }
-        else
+        else // if there's no such service
         {
             services.addImage(imageUrl);
             imagesRepository.save(imageUrl);
             serviceRepository.save(services);
             return "redirect:/admin/services";
         }
-        imagesRepository.save(imageUrl);
-        serviceRepository.save(services);
-        return "redirect:/admin/services";
+
     }
 
     @GetMapping("admin/services/delete")
